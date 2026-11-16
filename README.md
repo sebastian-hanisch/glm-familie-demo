@@ -127,7 +127,7 @@ Aussage mit Design: **stetiges Merkmal gegen 0/1-Merkmale, Gamma-GLM, ein Merkma
 
 ### Experiment 4: die Residualdeviance beim Standgeld (vorgerechnet; n = 1 050 Import-Container, 600 Datensätze je Zeile, Welt ohne Kundeneffekt, Modell mit Zoll und Wochenende **exakt richtig**)
 
-Alle Schwellen werden an demselben Datensatz gerechnet. Test gegen χ² auf dem Niveau 5 %; „D/(n − p)“ ist die ungruppierte Deviance durch die Freiheitsgrade, „2·H̄“ das Doppelte der mittleren Entropie der wahren Wahrscheinlichkeiten.
+Alle Schwellen werden an demselben Datensatz gerechnet. Die Anteile Standgeld (Spalte 2) gelten für den Generator dieser Demo; andere Demos zu den Containern bauen ihren Generator eigenständig nach und nennen deshalb ihre eigene Rate. Test gegen χ² auf dem Niveau 5 %; „D/(n − p)“ ist die ungruppierte Deviance durch die Freiheitsgrade, „2·H̄“ das Doppelte der mittleren Entropie der wahren Wahrscheinlichkeiten.
 
 | Schwelle c (Tage) | Anteil Standgeld | 2·H̄ | D/(n − p) | D über dem 95-%-Wert | D unter dem 5-%-Wert | gruppiert (4 Zellen) über dem 95-%-Wert | gültige Datensätze |
 |---|---|---|---|---|---|---|---|
@@ -266,4 +266,4 @@ Gebaut mit Streamlit, Plotly, NumPy, SciPy und pandas.
 
 ---
 
-Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zu den Demos: [Interaktive Demos](https://sebastianhanisch.net/demos.html).
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Regression und GLM: wann die Gleichung trügt](https://sebastianhanisch.net/konzepte-regression.html).
