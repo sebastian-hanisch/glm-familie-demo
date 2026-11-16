@@ -242,7 +242,7 @@ getattr(st, kind)(text)
 st.markdown("---")
 
 # --- Experiment 3 -------------------------------------------------------------------------------------------------------------------------
-st.subheader("🔬 Experiment 3: Welcher Link? Im Datenbereich schwer, außerhalb nicht")
+st.subheader("🔬 Experiment 3: Welcher Link? Mit stetigem Merkmal ab n = 50 meist lesbar, mit 0/1-Merkmalen nicht")
 st.caption("Gamma-GLM mit drei Links, Wahl nach AIC (Gamma-Likelihood mit auf die Form profilierter Wahrscheinlichkeit, Parameter Mittel + 1). Zähleinheit: Wiederholung = ein Datensatz aus n Containern. "
            "Export: Vorlauf gleichverteilt in [1; 10] Tagen, das Mittel der Verweilzeit ist exakt linear (wahr: Identität). Import: nur Zoll und Wochenende, das Mittel ist multiplikativ (wahr: Log).")
 e1c, e2c = st.columns(2)
@@ -394,7 +394,7 @@ st.markdown(
 |---|---|---|
 | **Familie und Link stehen fest** | Beide sind Wahlen mit Folgen: der Link ändert die Skala des Effekts und die Vorhersage außerhalb der Daten, die Familie die Gewichtung. Aus zwei Gruppenmitteln ist der Link nicht wählbar. | Experimente 2 und 3 |
 | **Das Mittelwertmodell passt zur Link-Skala** | Auf dieser Tabelle ist das Mittel der Verweilzeit nicht exakt log-linear; je Familie bleibt eine andere Abweichung. Der AIC wählt einen Link, nicht das richtige Modell. | Experimente 2 und 3 |
-| **Die Residualdeviance prüft das Modell** | Bei 0/1-Ausgang ist sie eine Funktion der angepassten Wahrscheinlichkeiten und folgt der mittleren Entropie, nicht der Passung. | Experiment 4 |
+| **Die Residualdeviance prüft das Modell** | Beim Logit ist sie bei 0/1-Ausgang eine Funktion der angepassten Wahrscheinlichkeiten; auch beim Probit folgt sie in dieser Demo der mittleren Entropie (D/(n − p) gleich 2·H̄ auf höchstens 0,005), nicht der Passung. | Experiment 4 |
 | **Gruppieren macht daraus einen Test** | Nur bei genügend großen Zellen; bei kleinen Zellen hält der Test sein Niveau nicht. Ein falscher Link (Logit statt Probit) ist kaum zu trennen. | Experiment 5 |
 | **IRLS gilt immer** | Nicht bei Separation, nicht für einen zweiten Parameter ohne Außenschleife, nicht für Quantilregression, Kalibrierung und gemischte Modelle. | Experiment 6 |
 | **Die Daten sind die des Vehikels** | Alle Zahlen gelten für synthetische Container (erfundene Annahmen), zwölf feste Kundeneffekte und die gewählten Parameter, nicht für Daten eines Hafens. | README |
