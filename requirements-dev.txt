@@ -1,0 +1,3 @@
+-r requirements.txt
+pytest>=8.0
+scikit-learn>=1.3   # nur Gegenprobe (tests/test_oracle_glm_familie.py), nicht Laufzeit
