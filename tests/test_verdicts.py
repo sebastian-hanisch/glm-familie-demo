@@ -179,6 +179,17 @@ def test_kern_answers_cite_frozen_rows():
     assert "0,0 % bis 100,0 %" in a3 and "Schwelle 4 Tage: 100,0 %, 7 Tage: 0,0 %" in a3
 
 
+def test_kern_answers_survive_a_fit_that_did_not_converge():
+    """Auf manchen gezogenen Datensätzen konvergiert die Identitäts-Anpassung nicht (zoll = None): keine Ausnahme, keine erfundene Zahl."""
+    fz = {"link_export": [{"n": 50, "used": 1000, "wins": {"identity": 915}}], "link_import": [{"n": 50, "used": 1000, "wins": {"log": 144}}],
+          "schwelle": {"rows": [{"c": 4, "rej_hi": 1.0}, {"c": 7, "rej_hi": 0.0}, {"c": 10, "rej_hi": 0.0}]}}
+    a1, a2, a3 = ev.kern_answers([{"key": "poisson/log", "zoll": 0.7048}, {"key": "poisson/identity", "zoll": None}], fz)
+    assert "konvergiert die Anpassung bei der Identität nicht" in a1 and "5," not in a1
+    a1, _, _ = ev.kern_answers([{"key": "poisson/log", "zoll": None}, {"key": "poisson/identity", "zoll": 5.2142}], fz)
+    assert "konvergiert die Anpassung beim Log-Link nicht" in a1
+    assert "91,5 %" in a2 and "Schwelle 4 Tage" in a3
+
+
 def test_exp6_table_has_seven_rows_with_a_stage_each():
     rows = ev.exp6_table()
     assert len(rows) == 7 and all(r["Stufe"] and r["Beleg"] for r in rows)

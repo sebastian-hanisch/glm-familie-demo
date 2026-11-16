@@ -434,8 +434,14 @@ def kern_answers(nine: list[dict], fz: dict) -> list[str]:
     """Die drei Kurzantworten der Kernfragen aus den Zahlen der Demo (neun Paare, vorgerechnete Messungen)."""
     pl = next(r for r in nine if r["key"] == "poisson/log")
     pi = next(r for r in nine if r["key"] == "poisson/identity")
-    a1 = (f"Auf der Container-Tabelle (n = 3 000, ein Datensatz) wirkt der Zollhalt auf die Standtage mit {num(pl['zoll'])} beim Log-Link (Faktor {num(math.exp(pl['zoll']))}) und mit "
-          f"{num(pi['zoll'])} Tagen bei der Identität: dieselben Daten, zwei Lesarten.")
+    if pl["zoll"] is None or pi["zoll"] is None:
+        # Auf manchen gezogenen Datensätzen konvergiert eine der beiden Anpassungen nicht (der Identitäts-Link kann das Mittel unter null drücken): dann keine Zahl behaupten.
+        fehlt = "beim Log-Link" if pl["zoll"] is None else "bei der Identität"
+        a1 = (f"Auf dieser Container-Tabelle (n = 3 000, ein Datensatz) konvergiert die Anpassung {fehlt} nicht; "
+              "der Vergleich der beiden Lesarten des Zollhalt-Koeffizienten entfällt für diesen Datensatz (anderen Zufalls-Seed ziehen).")
+    else:
+        a1 = (f"Auf der Container-Tabelle (n = 3 000, ein Datensatz) wirkt der Zollhalt auf die Standtage mit {num(pl['zoll'])} beim Log-Link (Faktor {num(math.exp(pl['zoll']))}) und mit "
+              f"{num(pi['zoll'])} Tagen bei der Identität: dieselben Daten, zwei Lesarten.")
     ex = next(r for r in fz["link_export"] if r["n"] == 50)
     im = next(r for r in fz["link_import"] if r["n"] == 50)
     a2 = (f"Im Vehikel nur bei einem stetigen Merkmal: beim Vorlauf im Export wählt der AIC bei n = 50 den wahren Identitäts-Link in {pct(ex['wins']['identity'] / ex['used'])} der Datensätze, "
